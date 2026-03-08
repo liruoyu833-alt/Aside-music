@@ -11,6 +11,10 @@ jobs:
         with:
           submodules: 'recursive'
 
+      # 调试：列出目录结构，确认文件位置
+      - name: Debug - List files
+        run: ls -la
+
       - name: Write config
         run: echo "${{ secrets.SECRETS_XCCONFIG }}" > Sources/AsideMusic/Secrets.xcconfig
 
