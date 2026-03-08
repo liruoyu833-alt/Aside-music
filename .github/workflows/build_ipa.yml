@@ -11,23 +11,16 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # 关键：进入子目录执行所有操作
       - name: Write config
-        run: |
-          cd Aside-music
-          echo "${{ secrets.SECRETS_XCCONFIG }}" > Sources/AsideMusic/Secrets.xcconfig
+        run: echo "${{ secrets.SECRETS_XCCONFIG }}" > Sources/AsideMusic/Secrets.xcconfig
 
       - name: Chmod
-        run: |
-          cd Aside-music
-          chmod +x build_ipa.sh
+        run: chmod +x build_ipa.sh
 
       - name: Build
-        run: |
-          cd Aside-music
-          ./build_ipa.sh
+        run: ./build_ipa.sh
 
       - uses: actions/upload-artifact@v4
         with:
           name: AsideMusic
-          path: Aside-music/AsideMusic.ipa
+          path: AsideMusic.ipa
