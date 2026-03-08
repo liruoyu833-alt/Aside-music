@@ -1,0 +1,19 @@
+name: Build IPA
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write config
+        run: echo "${{ secrets.SECRETS_XCCONFIG }}" > Aside-music/Secrets.xcconfig
+      - name: Chmod
+        run: chmod +x build_ipa.sh
+      - name: Build
+        run: ./build_ipa.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AsideMusic
+          path: AsideMusic.ipa
