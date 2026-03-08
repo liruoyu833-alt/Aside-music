@@ -11,9 +11,9 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # 调试：列出目录结构，确认文件位置
-      - name: Debug - List files
-        run: ls -la
+      # 关键：创建符号链接，解决路径错位问题
+      - name: Create symlink for ffmpeg-swift
+        run: ln -s . Aside-music
 
       - name: Write config
         run: echo "${{ secrets.SECRETS_XCCONFIG }}" > Sources/AsideMusic/Secrets.xcconfig
@@ -27,4 +27,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: AsideMusic
-          path: AsideMusic.ipa
+          path: AsideMusic.ipaa
