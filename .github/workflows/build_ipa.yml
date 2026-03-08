@@ -6,7 +6,10 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'  # 关键：递归克隆所有子模块
 
       - name: Write config
         run: echo "${{ secrets.SECRETS_XCCONFIG }}" > Sources/AsideMusic/Secrets.xcconfig
